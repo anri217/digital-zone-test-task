@@ -3,12 +3,12 @@ package com.anri.digitalzonetesttask.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@Entity
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
+@Entity
 @Table(name="visits")
 public class VisitLog {
 
@@ -17,11 +17,11 @@ public class VisitLog {
     @Column(name="id")
     private Long id;
 
-    //@NotNull
+    @NotNull
     @Column(name="username")
     private String username;
 
-    //@NotNull
+    @NotNull
     @Column(name="web_site")
     private String webSite;
 

@@ -7,6 +7,7 @@ import com.anri.digitalzonetesttask.services.VisitLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -23,7 +24,7 @@ public class VisitLogController {
     }
 
     @PostMapping("/create")
-    public DailyStatisticsDto addVisitLog(@RequestBody List<VisitLog> visitLogs){
+    public DailyStatisticsDto addVisitLog(@RequestBody @Valid List<VisitLog> visitLogs){
         for (VisitLog visitLog : visitLogs) {
             visitLogService.save(visitLog);
         }
@@ -32,7 +33,7 @@ public class VisitLogController {
         return new DailyStatisticsDto(visitsCountByCurDay, distUsersCountByCurDay);
     }
 
-    @GetMapping("/from={from}&to={to}") //example: /from=dd.MM.yyyy&to=dd.MM.yyyy
+    @GetMapping("?from={from}&to={to}") //example: /from=dd.MM.yyyy&to=dd.MM.yyyy
     public PeriodStatisticsDto getVisitLogByPeriod(@PathVariable String from, @PathVariable String to){
         PeriodStatisticsDto periodStatisticsDto = new PeriodStatisticsDto();
         String europeanDatePattern = "dd.MM.yyyy";
