@@ -33,7 +33,7 @@ public class VisitLogController {
         return new DailyStatisticsDto(visitsCountByCurDay, distUsersCountByCurDay);
     }
 
-    @GetMapping("?from={from}&to={to}") //example: /from=dd.MM.yyyy&to=dd.MM.yyyy
+    @GetMapping("?from={from}&to={to}") //example: localhost:808/visits?from=dd.MM.yyyy&to=dd.MM.yyyy
     public PeriodStatisticsDto getVisitLogByPeriod(@PathVariable String from, @PathVariable String to){
         PeriodStatisticsDto periodStatisticsDto = new PeriodStatisticsDto();
         String europeanDatePattern = "dd.MM.yyyy";
